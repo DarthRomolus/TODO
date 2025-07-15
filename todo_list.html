@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TO DO</title>
+        <link rel="stylesheet" href="todo_list.css">
+        <script src="todo_list.js" defer></script>
+    </header>
+    <body>
+        <div class="container">
+            <div class="todo-list">
+                <h1>TO DO</h1>
+                <form id="todo-form">
+                    <input type="text" id="todo-input" placeholder="Add a new task..." required>
+                    <button type="button" onclick=addTask() >Add</button>
+                </form>
+                <ul id="todo-items">
+                    <!-- List items will be dynamically added here -->
+
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

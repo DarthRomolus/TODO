@@ -1,0 +1,30 @@
+.container{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(135deg, #284e99e3, #430652);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+}
+*{
+    font-family: 'poppins', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.todo-list{
+    background-color: #fff;
+    align-items: center;
+    justify-items: center;
+    width: 35rem;
+    height: 35rem;
+    z-index: 1000;
+    border-radius: 1rem;
+    box-shadow: 1rem 1rem 10px rgba(0, 0, 0, 0.2);
+}
+.todo_items{
+     overflow-y: scroll;
+}
