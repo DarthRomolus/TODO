@@ -70,7 +70,7 @@ input:focus{
     background-color: #e08720cc;
 }
 #todo-items{
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 25rem;
     text-align: left;
 }
@@ -119,6 +119,14 @@ span{
     right: 3rem;
     cursor: pointer;
     color: #f15b15;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
     z-index: 1000;
+    text-align: center;
+    border-radius: 50%;
+}
+span:hover{
+    background-color: #edeef0;
 }
