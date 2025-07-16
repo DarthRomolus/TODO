@@ -5,23 +5,29 @@ function addTask(){
         alert("Please enter a task.");
     }
     else{
-        window.localStorage.setItem(task.value, "unchecked");
         let li=document.createElement("li")
         li.classList.add("unchecked");
         li.setAttribute("onclick", "checkTask(event)");
         li.innerHTML = task.value;
         listContainer.appendChild(li);
+        let span = document.createElement("span");
+        span.setAttribute("onclick", "removeTask(event)");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+        window.localStorage.setItem(li.innerHTML, "unchecked");
     }
     
 }
+
+
 function checkTask(task){
-    if(task.target.classList.contains("unchecked")){
+    if(task.target.classList.contains("unchecked") && task.target.tagName === "LI"){
         task.target.classList.remove("unchecked");
         task.target.classList.add("checked");
         window.localStorage.removeItem(task.target.innerHTML);
         window.localStorage.setItem(task.target.innerHTML, "checked");
     }
-    else{
+    else if(task.target.classList.contains("checked") && task.target.tagName === "LI"){
         task.target.classList.remove("checked");
         task.target.classList.add("unchecked");
         window.localStorage.removeItem(task.target.innerHTML);
@@ -30,6 +36,17 @@ function checkTask(task){
 
     }
 }
+
+
+
+function removeTask(task){     
+    window.localStorage.removeItem(task.target.parentElement.innerHTML);
+    window.localStorage.removeItem(task.target.innerHTML);
+    task.target.parentElement.remove();
+}
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
         if (window.localStorage.length === 0) {
             return;
@@ -47,6 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             li.setAttribute("onclick", "checkTask(event)");
             li.innerHTML = key;
             listContainer.appendChild(li);
+            let span = document.createElement("span");
+            span.setAttribute("onclick", "removeTask(event)");
+            span.innerHTML = "\u00d7";
+            li.appendChild(span);
         }
        
     }
