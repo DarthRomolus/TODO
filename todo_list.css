@@ -82,6 +82,8 @@ li.unchecked{
     position: relative;
     cursor: pointer;
     font-family: 'poppins', sans-serif;
+    word-wrap: break-word;
+    width: 30rem;
 
 }
 li.checked{
@@ -93,6 +95,8 @@ li.checked{
     text-decoration: line-through;
     color: #a9a9a9;
     font: 1rem 'poppins', sans-serif;
+    width: 30rem;
+
 }
 li.unchecked::before{
     content:'';

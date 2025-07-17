@@ -15,7 +15,7 @@ function addTask(){
     remove.setAttribute("onclick", "removeTask(event)");
     remove.innerHTML = "\u00d7";
     remove.classList.add("remove-task");
-
+    
     let li=document.createElement("li")
     li.classList.add("unchecked");
     li.setAttribute("onclick", "checkTask(event)");
@@ -32,7 +32,7 @@ function addTask(){
         listContainer.appendChild(li);
         window.localStorage.setItem(li.innerHTML, "unchecked");
     }
-    
+    task.value = "";// Clear the input field after adding the task
 }
 
 
@@ -94,7 +94,7 @@ function editTask(task){
     task.target.parentElement.remove();// Remove the old task from the list
     listContainer.appendChild(newTaskLi);// Append the new task to the list
 
-    window.localStorage.setItem(newTaskLi.innerHTML, window.localStorage.getItem(task.target.parentElement.innerHTML));// Store the new task in localStorage
+    window.localStorage.setItem(newTaskLi.innerHTML, "unchecked");// Store the new task in localStorage
     window.localStorage.removeItem(task.target.parentElement.innerHTML);// Remove the old task from localStorage
 
 
