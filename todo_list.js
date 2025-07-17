@@ -66,13 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.classList.add("unchecked");
                 li.setAttribute("onclick", "checkTask(event)");
             }
+
             li.setAttribute("onclick", "checkTask(event)");
             li.innerHTML = key;
             listContainer.appendChild(li);
-            let span = document.createElement("span");
-            span.setAttribute("onclick", "removeTask(event)");
-            span.innerHTML = "\u00d7";
-            li.appendChild(span);
+            window.localStorage.removeItem(key);
+            window.localStorage.setItem(li.innerHTML, li.classList.contains("checked") ? "checked" : "unchecked");
         }
        
     }
