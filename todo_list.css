@@ -104,6 +104,17 @@ li.unchecked::before{
     background-position: center;
     left: 0.2rem;
 }
+/*li.unchecked::after{
+    content:'';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(assets/edit.png);
+    background-size: cover;
+    background-position: center;
+    right: 5.5rem;
+    z-index: 1000;
+}*/
 li.checked::before{
     content:'';
     position: absolute;
@@ -113,10 +124,13 @@ li.checked::before{
     background-size: cover;
     background-position: center;
     left: 0.2rem;
+    cursor: pointer;
+    color: #f15b15;
 }
-span{
+.remove-task{
     position: absolute;
     right: 3rem;
+    top:0.1rem;
     cursor: pointer;
     color: #f15b15;
     font-size: 1.5rem;
@@ -127,6 +141,23 @@ span{
     text-align: center;
     border-radius: 50%;
 }
-span:hover{
+.remove-task:hover{
+    background-color: #edeef0;
+}
+.edit-task{
+    position: absolute;
+    right: 5.5rem;
+    top:0.1rem;
+    cursor: pointer;
+    color: #f15b15;
+    font-size: 1rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    z-index: 1000;
+    text-align: center;
+    border-radius: 50%;
+}
+.edit-task:hover{
     background-color: #edeef0;
 }
