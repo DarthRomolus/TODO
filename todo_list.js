@@ -19,7 +19,13 @@ function addTask(){
     let li=document.createElement("li")
     li.classList.add("unchecked");
     li.setAttribute("onclick", "checkTask(event)");
-    li.innerHTML = task.value;
+
+    let p = document.createElement("p");
+    p.classList.add("main-task-text-unchecked");
+    p.setAttribute("onclick", "checkTask(event)");
+
+    p.innerHTML = task.value;
+    li.appendChild(p);
 
 
     li.appendChild(edit);
@@ -39,19 +45,21 @@ function addTask(){
 function checkTask(task){
     if(task.target.classList.contains("unchecked") && task.target.tagName === "LI"){
 
-        task.target.classList.remove("unchecked");
-        task.target.classList.add("checked");
-
         window.localStorage.removeItem(task.target.innerHTML);
+        task.target.querySelector("p").className = "main-task-text-checked";
         window.localStorage.setItem(task.target.innerHTML, "checked");
+        task.target.className = "checked";
+        
+        
     }
     else if(task.target.classList.contains("checked") && task.target.tagName === "LI"){
 
-        task.target.classList.remove("checked");
-        task.target.classList.add("unchecked");
-
+        console.log(task.target.innerHTML);
         window.localStorage.removeItem(task.target.innerHTML);
+        task.target.querySelector("p").className = "main-task-text-unchecked";
         window.localStorage.setItem(task.target.innerHTML, "unchecked");
+        task.target.className = "unchecked";     
+
 
     }
 }
@@ -80,35 +88,44 @@ function editTask(task){
 
     let oldTask= task.target.parentElement.textContent.replace("\u270E", "").replace("\u00d7", "").trim();// Get the text of the task to be edited, removing the edit and remove icons
     let newTaskText = prompt("Edit your task:", oldTask);// Prompt the user to enter the new task text and show the old task text as a default value
-    if(newTaskText === null ) {
-        return;
-    }
 
     let newTaskLi = document.createElement("li");// Create a new list item for the edited task to replace the old one
     newTaskLi.classList.add("unchecked");
 
-    newTaskLi.innerHTML = newTaskText;
+    let p = document.createElement("p");
+    p.classList.add("main-task-text-unchecked");
+    p.setAttribute("onclick", "checkTask(event)");
+
+    p.innerHTML = newTaskText;// Set the text of the new task
+    newTaskLi.appendChild(p);
+
     newTaskLi.appendChild(edit);
     newTaskLi.appendChild(remove);
     newTaskLi.setAttribute("onclick", "checkTask(event)");
-    task.target.parentElement.remove();// Remove the old task from the list
-    listContainer.appendChild(newTaskLi);// Append the new task to the list
+    
 
-    window.localStorage.setItem(newTaskLi.innerHTML, "unchecked");// Store the new task in localStorage
-    window.localStorage.removeItem(task.target.parentElement.innerHTML);// Remove the old task from localStorage
-
+    if(newTaskText === "" || window.localStorage.getItem(newTaskLi.innerHTML) != null){
+        alert("Please enter a task or create a new one");
+    }
+    else{
+        task.target.parentElement.remove();// Remove the old task from the list
+        listContainer.appendChild(newTaskLi);// Append the new task to the list
+        window.localStorage.setItem(newTaskLi.innerHTML, "unchecked");// Store the new task in localStorage
+        window.localStorage.removeItem(task.target.parentElement.innerHTML);// Remove the old task from localStorage
+    }
+    
 
 }
 
-
+// Initialize the list from localStorage when the page loads after a refresh or reopening the page
 document.addEventListener("DOMContentLoaded", () => {
         if (window.localStorage.length === 0) {
             return;
         }
-        for(let i = 0; i < window.localStorage.length; i++) {
-            let key = window.localStorage.key(i);
-            let li = document.createElement("li");
-            if (window.localStorage.getItem(key) === "checked") {
+        for(let i = 0; i < window.localStorage.length; i++) {// Loop through all items in localStorage
+            let key = window.localStorage.key(i);// Get the key of the current item
+            let li = document.createElement("li");// Create a new list item for the task
+            if (window.localStorage.getItem(key) === "checked"){// Check if the task is marked as checked
                 li.classList.add("checked");
                 li.setAttribute("onclick", "checkTask(event)");
             } else {
@@ -116,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.setAttribute("onclick", "checkTask(event)");
             }
 
-            li.setAttribute("onclick", "checkTask(event)");
             li.innerHTML = key;
             listContainer.appendChild(li);
             window.localStorage.removeItem(key);
