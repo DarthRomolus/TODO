@@ -154,6 +154,23 @@ li.checked::before{
 .edit-task:hover{
     background-color: #edeef0;
 }
+.add-subtask{
+    position: absolute;
+    right: 8rem;
+    top:0.1rem;
+    cursor: pointer;
+    color: #f15b15;
+    font-size: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    z-index: 1000;
+    text-align: center;
+    border-radius: 50%;
+}
+.add-subtask:hover{
+    background-color: #edeef0;
+}
 .main-task-text-unchecked{
     display: inline-block;
     font-family: 'poppins', sans-serif;
@@ -168,6 +185,82 @@ li.checked::before{
     margin:0;
     width: 23rem;
     word-wrap: break-word;
-    text-decoration: line-through;
     z-index: -1;
+}
+.subtask-unchecked{
+    list-style: none;
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+    font:1rem 'poppins', sans-serif;
+    position: relative;
+    cursor: pointer;
+    font-family: 'poppins', sans-serif;
+    word-wrap: break-word;
+    width: 25rem;    
+}
+.subtask-checked{
+    list-style: none;
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+    font:1rem 'poppins', sans-serif;
+    position: relative;
+    cursor: pointer;
+    font-family: 'poppins', sans-serif;
+    word-wrap: break-word;
+    width: 25rem;
+    text-align: line-through;    
+}
+.subtask-unchecked::before{
+    content:'';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(assets/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    left: 0.2rem;
+}
+.subtask-checked::before{
+    content:'';
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(assets/purple_checked-removebg-preview.png);
+    background-size: cover;
+    background-position: center;
+    left: 0.2rem;
+}
+.edit-subtask{
+    position: absolute;
+    right: 5rem;
+    top:0.1rem;
+    cursor: pointer;
+    color: #7a0fc2;
+    font-size: 1rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    z-index: 1000;
+    text-align: center;
+    border-radius: 50%;
+}
+.edit-subtask:hover{
+    background-color: #edeef0;
+}
+.remove-subtask{
+    position: absolute;
+    right: 2.5rem;
+    top:0.1rem;
+    cursor: pointer;
+    color: #7a0fc2;
+    font-size: 1.5rem;
+    height: 2rem;
+    width: 2rem;
+    line-height: 2rem;
+    z-index: 1000;
+    text-align: center;
+    border-radius: 50%;
+}
+.remove-subtask:hover{
+    background-color: #edeef0;
 }
